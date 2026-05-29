@@ -15,6 +15,7 @@ services:
     # Файл (или список файлов) с переменными окружения
     env_file: .env
     # Какой volume подключить для этого контейнера
+    restart: always
     volumes:
       - pg_data:/var/lib/postgresql/data
   # Имя и описание контейнера с бэкендом
@@ -22,6 +23,7 @@ services:
     # Из какого Dockerfile собирать образ для этого контейнера:
     build: ./backend/
     env_file: .env
+    restart: always
     # Какие контейнеры нужно запустить до старта этого контейнера:
     depends_on:
       - db
@@ -39,6 +41,7 @@ services:
     # Сбилдить и запустить образ, 
     # описанный в Dockerfile в папке gateway
     build: ./gateway/
+    restart: always
     # Ключ ports устанавливает
     # перенаправление всех запросов с порта 8000 хоста
     # на порт 80 контейнера
